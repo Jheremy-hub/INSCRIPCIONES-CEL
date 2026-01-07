@@ -6,6 +6,659 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    /* Tipografía */
+    --font-sans: 'Inter', 'Segoe UI', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Colores CEL - Identidad Institucional */
+    --color-cel-blue: #003d82;
+    --color-cel-blue-dark: #002854;
+    --color-cel-blue-light: #0055b3;
+    --color-cel-gold: #d4af37;
+    --color-cel-gold-dark: #b8941f;
+    --color-cel-gold-light: #e6c963;
+
+    /* Nuevos colores diseño 2024 */
+    --color-cel-red: #b91c1c;
+    /* Rojo institucional fuerte */
+    --color-cel-beige: #efeec1;
+    /* Beige de fondo para tarjetas */
+
+    /* Escala de grises */
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+
+    /* Estados */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --color-info: #3b82f6;
+}
+
+/* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: #ffffff;
+    min-height: 100vh;
+    color: var(--color-gray-800);
+    line-height: 1.6;
+}
+
+/* Componentes personalizados */
+.cel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.cel-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 61, 130, 0.1);
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.cel-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 61, 130, 0.15);
+    transform: translateY(-2px);
+}
+
+.cel-btn-primary {
+    background: linear-gradient(135deg, var(--color-cel-blue) 0%, var(--color-cel-blue-light) 100%);
+    color: white;
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 61, 130, 0.3);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.cel-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 61, 130, 0.4);
+}
+
+.cel-btn-secondary {
+    background: white;
+    color: var(--color-cel-blue);
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border-radius: 10px;
+    border: 2px solid var(--color-cel-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.cel-btn-secondary:hover {
+    background: var(--color-cel-blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.cel-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--color-gray-300);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.cel-input:focus {
+    outline: none;
+    border-color: var(--color-cel-blue);
+    box-shadow: 0 0 0 3px rgba(0, 61, 130, 0.1);
+}
+
+.cel-input.error {
+    border-color: var(--color-error);
+}
+
+.cel-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-gray-700);
+}
+
+.cel-label-required::after {
+    content: ' *';
+    color: var(--color-error);
+}
+
+.cel-error-message {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.375rem;
+}
+
+.cel-header {
+    background: linear-gradient(135deg, var(--color-cel-blue-dark) 0%, var(--color-cel-blue) 100%);
+    color: white;
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cel-footer {
+    background: var(--color-gray-800);
+    color: var(--color-gray-300);
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.cel-badge {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.cel-file-upload {
+    border: 2px dashed var(--color-gray-300);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--color-gray-50);
+}
+
+.cel-file-upload:hover {
+    border-color: var(--color-cel-blue);
+    background: white;
+}
+
+.cel-file-upload.dragover {
+    border-color: var(--color-cel-gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+/* Animaciones suaves */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cel-card {
+        padding: 1.5rem;
+    }
+
+    .cel-container {
+        padding: 0 1rem;
+    }
+}
+
+/* Nuevos componentes diseño 2024 - Enhanced */
+.cel-red-banner {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem 2.5rem;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(185, 28, 28, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 3rem;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.cel-red-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.cel-gold-card {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #eab308 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    height: 100%;
+    color: #1f2937;
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3), 0 1px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: 2px solid #d97706;
+    position: relative;
+    overflow: hidden;
+}
+
+.cel-gold-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #f59e0b, #d97706, #b45309);
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cel-gold-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.5), 0 5px 15px rgba(217, 119, 6, 0.4);
+}
+
+.cel-gold-card:hover::before {
+    opacity: 0.6;
+}
+
+.cel-gold-card h3 {
+    color: var(--color-cel-blue);
+    font-weight: 800;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--color-cel-blue);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    position: relative;
+}
+
+.cel-gold-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: var(--color-cel-gold);
+}
+
+.cel-list-check {
+    list-style: none;
+    padding: 0;
+}
+
+.cel-list-check li {
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #374151;
+}
+
+.cel-list-check li::before {
+    content: '✓';
+    color: #059669;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    font-size: 1.1rem;
+}
+
+.cel-accordion {
+    margin-bottom: 0.75rem;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cel-accordion-header {
+    background-color: #f3eacb;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #1f2937;
+    transition: background-color 0.3s ease;
+}
+
+.cel-accordion-header:hover {
+    background-color: #ede0b8;
+}
+
+.cel-accordion-header::after {
+    content: '+';
+    color: var(--color-cel-blue, #003d82);
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.cel-accordion-content {
+    background: white;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 1.5rem;
+    border: 1px solid #f3f4f6;
+    border-top: none;
+    transition: max-height 0.7s ease-in-out, padding 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.cel-accordion-content.active {
+    max-height: 2000px;
+    padding: 1.5rem;
+    opacity: 1;
+    transition: max-height 0.8s ease-in-out, padding 0.5s ease-in-out, opacity 0.6s ease-in-out 0.15s;
+}
+
+/* Footer Styles */
+.cel-footer {
+    background-color: #e5e7eb;
+    padding: 3rem 0;
+    margin-top: 4rem;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+.cel-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.cel-footer h4 {
+    color: #dc2626;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.cel-footer p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.cel-social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cel-social-icon {
+    width: 32px;
+    height: 32px;
+    background: #b91c1c;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.cel-social-icon:hover {
+    background: #991b1b;
+}
+
+.cel-btn-yellow {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: #1f2937;
+    font-weight: 800;
+    padding: 1.25rem 2.5rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    font-size: 1.05rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.cel-btn-yellow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cel-btn-yellow:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.cel-btn-yellow:hover {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.5), 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Tarjetas blancas mejoradas */
+.cel-info-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0, 61, 130, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 61, 130, 0.08);
+    height: 100%;
+}
+
+.cel-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 61, 130, 0.12), 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: var(--color-cel-blue);
+}
+
+.cel-info-card h3 {
+    color: var(--color-cel-blue);
+    font-weight: 800;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.cel-info-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-cel-blue) 0%, var(--color-cel-gold) 100%);
+    border-radius: 3px;
+}
+
+/* Video placeholders mejorados */
+.cel-video-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.cel-video-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.cel-video-card .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: var(--color-cel-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    box-shadow: 0 5px 20px rgba(185, 28, 28, 0.4);
+    transition: all 0.3s ease;
+}
+
+.cel-video-card:hover .play-button {
+    transform: scale(1.1);
+    background: #0052a3 !important;
+}
+
+/* ==========================================
+   DOCUMENT UPLOAD STYLES
+   ========================================== */
+
+.cel-document-upload {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+}
+
+.cel-document-upload:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.cel-document-header {
+    background: linear-gradient(135deg, var(--color-cel-blue) 0%, #1e40af 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.cel-document-icon {
+    font-size: 1.5rem;
+}
+
+.cel-document-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.cel-document-body {
+    padding: 1.5rem;
+}
+
+.cel-document-body p {
+    color: var(--color-gray-600);
+    font-size: 0.9rem;
+    margin: 0 0 1rem;
+}
+
+.cel-file-input {
+    display: block;
+    cursor: pointer;
+}
+
+.cel-file-input input[type="file"] {
+    display: none;
+}
+
+.cel-file-btn {
+    display: block;
+    background: linear-gradient(135deg, #f3eacb 0%, #e5d9a8 100%);
+    color: #1f2937;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px dashed #d4c896;
+}
+
+.cel-file-input:hover .cel-file-btn {
+    background: linear-gradient(135deg, #e5d9a8 0%, #d4c896 100%);
+    border-color: #c4b886;
+}
+
+.cel-file-name {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--color-gray-500);
+    text-align: center;
+    font-style: italic;
+}
+
+.cel-error {
+    display: block;
+    color: #dc2626;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
 }
