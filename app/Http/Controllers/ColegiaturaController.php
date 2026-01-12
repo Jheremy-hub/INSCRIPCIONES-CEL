@@ -159,19 +159,19 @@ class ColegiaturaController extends Controller
         ];
 
         // Guardar archivos
-        $datos['solicitud_incorporacion'] = $request->file('solicitud_incorporacion')
+        $datos['solicitud_incorporacion_path'] = $request->file('solicitud_incorporacion')
             ->store('colegiaturas/documentos/solicitudes', 'public');
         
-        $datos['ficha_personal'] = $request->file('ficha_personal')
+        $datos['ficha_personal_path'] = $request->file('ficha_personal')
             ->store('colegiaturas/documentos/fichas_personales', 'public');
         
-        $datos['compromiso_honor'] = $request->file('compromiso_honor')
+        $datos['compromiso_honor_path'] = $request->file('compromiso_honor')
             ->store('colegiaturas/documentos/compromisos', 'public');
         
-        $datos['declaracion_jurada'] = $request->file('declaracion_jurada')
+        $datos['declaracion_jurada_path'] = $request->file('declaracion_jurada')
             ->store('colegiaturas/documentos/declaraciones', 'public');
         
-        $datos['ficha_carnet'] = $request->file('ficha_carnet')
+        $datos['ficha_carnet_path'] = $request->file('ficha_carnet')
             ->store('colegiaturas/documentos/carnets', 'public');
 
         // Guardar en base de datos
